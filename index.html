@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonrisa Da Silva - Odontología</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦷</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #111111;
+            color: #E5E7EB; /* light gray */
+            background-image: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 40%),
+                              radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.1), transparent 50%);
+            background-attachment: fixed;
+        }
+        .glass-effect {
+            background: rgba(18, 18, 18, 0.6);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card-glow {
+             box-shadow: 0 0 45px rgba(59, 130, 246, 0.1);
+        }
+        .brand-text {
+            color: #60a5fa; /* A nice, modern blue */
+        }
+        .gallery-img {
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .whatsapp-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            text-align: center;
+        }
+        .whatsapp-float {
+            width: 60px;
+            height: 60px;
+            background-color: transparent;
+            transition: transform 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-float img {
+            width: 100%;
+            height: auto;
+        }
+        .whatsapp-text {
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        .social-icon:hover {
+            opacity: 0.8;
+            transform: scale(1.1);
+        }
+        .footer-link {
+            transition: text-shadow 0.3s ease;
+        }
+        .footer-link:hover {
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Unified "Glass" Button Style */
+        .action-button {
+            color: white;
+            font-weight: 600; /* font-semibold */
+            padding: 0.85rem 2.25rem; /* A bit more padding */
+            border-radius: 9999px; /* rounded-full */
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1rem; /* text-base */
+            letter-spacing: 0.05em; /* tracking-wide */
+            background: rgba(59, 130, 246, 0.15);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .action-button:hover {
+            transform: scale(1.05) translateY(-2px);
+            background: rgba(59, 130, 246, 0.25);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            will-change: opacity, transform;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Bio toggle animation */
+        .bio-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out, margin-top 0.7s ease-in-out;
+        }
+        
+    </style>
+</head>
+<body class="bg-black text-gray-200">
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-container">
+        <a href="https://wa.me/573173728776" class="whatsapp-float" target="_blank">
+            <img src="images/whatsapp-logo.png" alt="Agendar cita por WhatsApp">
+        </a>
+        <p class="whatsapp-text">¡Agenda tu cita!</p>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-effect shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <img src="images/logo.png" alt="Logo Sonrisa Da Silva" class="h-12 md:h-16">
+            </div>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#inicio" class="text-gray-300 hover:text-white transition duration-300">Inicio</a>
+                <a href="#sobre-mi" class="text-gray-300 hover:text-white transition duration-300">Sobre Mí</a>
+                <a href="#servicios" class="text-gray-300 hover:text-white transition duration-300">Servicios</a>
+                <a href="#resultados" class="text-gray-300 hover:text-white transition duration-300">Resultados</a>
+                <a href="#reseñas" class="text-gray-300 hover:text-white transition duration-300">Reseñas</a>
+                <a href="#contacto" class="text-gray-300 hover:text-white transition duration-300">Contacto</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-black bg-opacity-95 z-40 flex flex-col items-center justify-center space-y-8">
+        <a href="#inicio" class="mobile-menu-link text-2xl text-gray-300 hover:text-white">Inicio</a>
+        <a href="#sobre-mi" class="mobile-menu-link text-2xl text-gray-300 hover:text-white">Sobre Mí</a>
+        <a href="#servicios" class="mobile-menu-link text-2xl text-gray-300 hover:text-white">Servicios</a>
+        <a href="#resultados" class="mobile-menu-link text-2xl text-gray-300 hover:text-white">Resultados</a>
+        <a href="#reseñas" class="mobile-menu-link text-2xl text-gray-300 hover:text-white">Reseñas</a>
+        <a href="#contacto" class="mobile-menu-link text-2xl text-gray-300 hover:text-white">Contacto</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-24 pb-16 md:py-32">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0 reveal">
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4">
+                    Tu Sonrisa, <span class="brand-text">Nuestra Pasión</span>
+                </h1>
+                <p class="text-lg text-gray-400 mb-8">
+                    En Sonrisa Da Silva, combinamos arte y tecnología para ofrecerte todos los procedimientos odontológicos que necesitas en un solo lugar.
+                </p>
+                <a href="https://wa.me/573173728776" target="_blank" class="action-button">Agenda tu Cita</a>
+            </div>
+            <div class="md:w-1/2 flex justify-center reveal">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-800 blur-2xl opacity-30" style="border-radius: 50%;"></div>
+                    <img src="images/doctor.jpg" alt="Odontólogo de Sonrisa Da Silva" class="relative shadow-2xl w-64 h-64 md:w-96 md:h-96 object-cover border-4 border-gray-700" style="border-radius: 50%;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mí Section -->
+    <section id="sobre-mi" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="glass-effect rounded-2xl p-8 md:p-12 reveal">
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                     <div class="md:w-1/3">
+                        <img src="images/doctor2.jpg" alt="Equipo de Sonrisa Da Silva" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div class="md:w-2/3 text-center md:text-left">
+                        <h2 class="text-3xl font-bold mb-4 text-white">Sonrisa Da Silva</h2>
+                        <h3 class="text-xl font-semibold brand-text mb-4">Odontología Integral de Alta Calidad</h3>
+                        <p class="text-gray-400 leading-relaxed mb-8">
+                           Somos un equipo de profesionales apasionados por la salud oral y la estética dental. Nuestro principal objetivo es brindarte una experiencia cómoda y resultados que te hagan sonreír con confianza.
+                        </p>
+                        <button id="toggle-bio-btn" class="action-button">
+                            Nuestra Filosofía
+                        </button>
+                    </div>
+                </div>
+                <div id="detailed-bio" class="bio-details">
+                    <div class="mt-8 pt-8 border-t border-gray-700">
+                        <h4 class="text-2xl font-bold brand-text mb-4">Compromiso con la Excelencia</h4>
+                        <p class="text-gray-400 leading-relaxed">
+                            En Sonrisa Da Silva, creemos en la importancia de un diagnóstico preciso y un plan de tratamiento adaptado a las necesidades individuales de cada paciente. Utilizamos tecnología de punta y nos mantenemos en constante formación para ofrecerte las técnicas más avanzadas en todas las áreas de la odontología. Tu bienestar y satisfacción son el centro de todo lo que hacemos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="reveal">
+                <h2 class="text-3xl font-bold mb-2 text-white">Nuestros Servicios</h2>
+                <p class="text-gray-400 mb-12 max-w-2xl mx-auto">Desde odontología general hasta procedimientos estéticos avanzados, tenemos todo lo que necesitas.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-effect card-glow p-8 rounded-2xl text-left transform hover:-translate-y-2 transition-transform duration-300 reveal"><h3 class="text-xl font-bold mb-2 text-white">Diseño de Sonrisa</h3><p class="text-gray-400">Transformamos tu sonrisa con carillas de disilicato de litio de alta calidad para un resultado estético y natural.</p></div>
+                <div class="glass-effect card-glow p-8 rounded-2xl text-left transform hover:-translate-y-2 transition-transform duration-300 reveal"><h3 class="text-xl font-bold mb-2 text-white">Odontología General</h3><p class="text-gray-400">Cuidado preventivo y restaurativo para mantener tu salud oral en óptimas condiciones.</p></div>
+                <div class="glass-effect card-glow p-8 rounded-2xl text-left transform hover:-translate-y-2 transition-transform duration-300 reveal"><h3 class="text-xl font-bold mb-2 text-white">Ortodoncia</h3><p class="text-gray-400">Alineamos tus dientes con brackets de zafiro casi invisibles para total discreción, o con técnicas tradicionales.</p></div>
+                <div class="glass-effect card-glow p-8 rounded-2xl text-left transform hover:-translate-y-2 transition-transform duration-300 reveal"><h3 class="text-xl font-bold mb-2 text-white">Cirugía Oral</h3><p class="text-gray-400">Procedimientos seguros como extracciones de cordales e implantes dentales realizados por especialistas.</p></div>
+                <div class="glass-effect card-glow p-8 rounded-2xl text-left transform hover:-translate-y-2 transition-transform duration-300 reveal"><h3 class="text-xl font-bold mb-2 text-white">Endodoncia</h3><p class="text-gray-400">Tratamiento de conducto para salvar dientes dañados y aliviar el dolor de forma efectiva.</p></div>
+                <div class="glass-effect card-glow p-8 rounded-2xl text-left transform hover:-translate-y-2 transition-transform duration-300 reveal"><h3 class="text-xl font-bold mb-2 text-white">Periodoncia</h3><p class="text-gray-400">Tratamiento de las encías para prevenir y controlar enfermedades periodontales, asegurando una base sana.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resultados Section -->
+    <section id="resultados" class="py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="reveal">
+                <h2 class="text-3xl font-bold mb-2 text-white">Resultados que Inspiran</h2>
+                <p class="text-gray-400 mb-12 max-w-2xl mx-auto">La mejor carta de presentación son las sonrisas de nuestros pacientes. Aquí algunos ejemplos de nuestro trabajo.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="reveal overflow-hidden rounded-lg shadow-lg border border-gray-800"><img src="images/resultado (1).jpg" alt="Resultado de diseño de sonrisa 1" class="gallery-img w-full h-full hover:scale-110 transition-transform duration-300"></div>
+                <div class="reveal overflow-hidden rounded-lg shadow-lg border border-gray-800"><img src="images/resultado (2).jpg" alt="Resultado de diseño de sonrisa 2" class="gallery-img w-full h-full hover:scale-110 transition-transform duration-300"></div>
+                <div class="reveal overflow-hidden rounded-lg shadow-lg border border-gray-800"><img src="images/resultado (3).jpg" alt="Resultado de diseño de sonrisa 3" class="gallery-img w-full h-full hover:scale-110 transition-transform duration-300"></div>
+                <div class="reveal overflow-hidden rounded-lg shadow-lg border border-gray-800"><img src="images/resultado (4).jpg" alt="Resultado de diseño de sonrisa 4" class="gallery-img w-full h-full hover:scale-110 transition-transform duration-300"></div>
+                <!-- Extra results hidden by default -->
+                <div class="extra-result hidden reveal overflow-hidden rounded-lg shadow-lg border border-gray-800"><img src="images/resultado (5).jpg" alt="Resultado de diseño de sonrisa 5" class="gallery-img w-full h-full hover:scale-110 transition-transform duration-300"></div>
+                <div class="extra-result hidden reveal overflow-hidden rounded-lg shadow-lg border border-gray-800"><img src="images/resultado (6).jpg" alt="Resultado de diseño de sonrisa 6" class="gallery-img w-full h-full hover:scale-110 transition-transform duration-300"></div>
+                <div class="extra-result hidden reveal overflow-hidden rounded-lg shadow-lg border border-gray-800"><img src="images/resultado (7).jpg" alt="Resultado de diseño de sonrisa 7" class="gallery-img w-full h-full hover:scale-110 transition-transform duration-300"></div>
+                <div class="extra-result hidden reveal overflow-hidden rounded-lg shadow-lg border border-gray-800"><img src="images/resultado (8).jpg" alt="Resultado de diseño de sonrisa 8" class="gallery-img w-full h-full hover:scale-110 transition-transform duration-300"></div>
+            </div>
+            <button id="toggle-results-btn" class="mt-12 action-button reveal">Ver más resultados</button>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="reseñas" class="py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="reveal">
+                <h2 class="text-3xl font-bold mb-2 text-white">Lo que dicen nuestros pacientes</h2>
+                <p class="text-gray-400 mb-12 max-w-2xl mx-auto">La confianza y satisfacción de quienes nos eligen es nuestro mayor orgullo.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-effect card-glow p-8 rounded-2xl text-left reveal">
+                    <p class="text-gray-300 mb-4">"¡La mejor experiencia! Un equipo súper profesional y amable. Mi diseño de sonrisa quedó perfecto, justo como lo quería."</p>
+                    <p class="font-bold brand-text">- Laura V.</p>
+                </div>
+                <div class="glass-effect card-glow p-8 rounded-2xl text-left reveal">
+                    <p class="text-gray-300 mb-4">"Excelente atención y resultados increíbles. Me sentí seguro y cómodo durante todo el tratamiento. ¡100% recomendados!"</p>
+                    <p class="font-bold brand-text">- Carlos M.</p>
+                </div>
+                <div class="glass-effect card-glow p-8 rounded-2xl text-left reveal">
+                    <p class="text-gray-300 mb-4">"Gracias a Sonrisa Da Silva perdí el miedo al odontólogo. Son muy cuidadosos y el resultado de mi rehabilitación fue simplemente maravilloso."</p>
+                    <p class="font-bold brand-text">- Andrea P.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Action Buttons Section -->
+    <section id="contacto" class="py-20">
+        <div class="container mx-auto px-6 text-center reveal">
+             <h2 class="text-3xl font-bold mb-4 text-white">¿Listo para transformar tu sonrisa?</h2>
+             <p class="text-gray-400 mb-8 max-w-2xl mx-auto">Agenda tu cita de valoración o visítanos en nuestro consultorio en Barranquilla.</p>
+             <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="https://www.google.com/maps/search/?api=1&query=Cll+79%23+42F-93,+Barranquilla,+Colombia" target="_blank" class="action-button">
+                    Cómo llegar
+                </a>
+                <a href="https://wa.me/573173728776" target="_blank" class="action-button">
+                    Contáctanos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-500 py-16">
+        <div class="container mx-auto px-6 text-center text-sm flex flex-col items-center reveal">
+            <!-- Footer Menu -->
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8">
+                <a href="#inicio" class="footer-link text-gray-400 hover:text-white">Inicio</a>
+                <a href="#sobre-mi" class="footer-link text-gray-400 hover:text-white">Sobre Mí</a>
+                <a href="#servicios" class="footer-link text-gray-400 hover:text-white">Servicios</a>
+                <a href="#resultados" class="footer-link text-gray-400 hover:text-white">Resultados</a>
+                 <a href="#reseñas" class="footer-link text-gray-400 hover:text-white">Reseñas</a>
+            </div>
+
+            <!-- Social Icon -->
+            <div class="mb-6">
+                 <a href="https://www.instagram.com/sonrisadasilva" target="_blank" class="social-icon inline-block transition-transform duration-300">
+                    <img src="images/instagram.png" alt="Instagram Sonrisa Da Silva" class="w-8 h-8">
+                </a>
+            </div>
+
+            <!-- Copyright -->
+            <p>Ubicación: Cll 79# 42F-93, Barranquilla - Colombia</p>
+            <p class="mt-2">&copy; 2025 Sonrisa Da Silva. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Gallery Toggle
+        const toggleBtn = document.getElementById('toggle-results-btn');
+        const extraResults = document.querySelectorAll('.extra-result');
+
+        toggleBtn.addEventListener('click', () => {
+            let allVisible = true;
+            extraResults.forEach(result => {
+                result.classList.toggle('hidden');
+                if (result.classList.contains('hidden')) {
+                    allVisible = false;
+                }
+            });
+
+            if (allVisible) {
+                toggleBtn.textContent = 'Ver menos resultados';
+            } else {
+                toggleBtn.textContent = 'Ver más resultados';
+            }
+        });
+
+        // Bio Toggle
+        const toggleBioBtn = document.getElementById('toggle-bio-btn');
+        const detailedBio = document.getElementById('detailed-bio');
+
+        toggleBioBtn.addEventListener('click', () => {
+            const isHidden = detailedBio.style.maxHeight === '0px' || detailedBio.style.maxHeight === '';
+            
+            if (isHidden) {
+                detailedBio.style.marginTop = '2rem';
+                detailedBio.style.maxHeight = detailedBio.scrollHeight + 'px';
+                toggleBioBtn.textContent = 'Mostrar menos';
+            } else {
+                detailedBio.style.marginTop = '0';
+                detailedBio.style.maxHeight = '0px';
+                toggleBioBtn.textContent = 'Nuestra Filosofía';
+            }
+        });
+        
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
+
